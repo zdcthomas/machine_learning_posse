@@ -22,10 +22,11 @@ tf.global_variables_initializer().run()
 
 numpy.set_printoptions(threshold=numpy.nan) 
 
-for _ in range(50000):
+for _ in range(500):
   batch_xs, batch_ys = mnist.train.next_batch(100)
   sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+# print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+print(f"{sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}) * 100} % accurate")
